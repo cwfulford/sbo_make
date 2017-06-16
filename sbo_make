@@ -11,7 +11,7 @@ cd $app
 . ./$app.info
 wget $DOWNLOAD
 pkg=`./$app.SlackBuild|awk '{print $3}'`
-pkg_chk=`expr "$pkg" : '.tgz'
+pkg_chk=`expr "$pkg" : '.tgz'`
 if [ "$pkf_chk" -eq 4 ];then 
 	mv /tmp/$pkg .
 	installpkg /tmp/$pkg;then
