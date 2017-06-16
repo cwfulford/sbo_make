@@ -23,8 +23,8 @@ pkg_chk=`expr "$pkg" : '.*SBo.tgz'`
 if [ $pkg_chk -gt 7 ];then 
 	echo "sudo mv /tmp/$pkg ."
 	read
-	sudo mv /tmp/$pkg .
-	sudo installpkg $pkg
+	mv /tmp/$pkg .
+	sudo /sbin/installpkg $pkg
 else
 	echo "$cmd: Failed, package not created">&2
 	cd ..
