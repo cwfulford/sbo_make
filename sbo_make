@@ -11,7 +11,7 @@ cd $app
 . ./$app.info
 wget $DOWNLOAD
 pkg=`sudo ./$app.SlackBuild|awk '{print $3}'`
-pkg_chk=`expr "$pkg" : '.*SBo\.tgz'`
+pkg_chk=`expr "$pkg" : '.*SBo.tgz'`
 if [ $pkf_chk -gt 7 ];then 
 	sudo mv /tmp/$pkg .
 	sudo installpkg /tmp/$pkg
