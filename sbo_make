@@ -12,7 +12,7 @@ cd $app
 wget $DOWNLOAD
 pkg=`sudo ./$app.SlackBuild|awk '{print $3}'`
 pkg_chk=`expr "$pkg" : '.tgz'`
-if [ "$pkf_chk" -eq 4 ];then 
+if [ $pkf_chk -eq 4 ];then 
 	sudo mv /tmp/$pkg .
 	sudo installpkg /tmp/$pkg
 else
