@@ -1,0 +1,17 @@
+app=$1
+#gpg --verify $sbo.asc|grep -q "Good signature"||{
+#	echo "Integrity check failed" >&2
+#	exit 1
+#}
+tar xvf $app.tar.gz
+chown fulford $app 
+cd $app 
+. ./$app.info
+wget $DOWNLOAD
+pkg=`./$app.SlackBuild|awk '{print $3}'`
+
+if installpkg /tmp/$pkg;then
+	mv /tmp/$pkg .
+fi
+cd ..
+	
