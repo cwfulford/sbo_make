@@ -4,7 +4,7 @@ sbo=$1
 #	echo "Integrity check failed" >&2
 #	exit 1
 #}
-app=`basename $sbo .tar.gz
+app=`basename $sbo .tar.gz`
 tar xvf $sbo
 chown fulford $app 
 cd $app 
