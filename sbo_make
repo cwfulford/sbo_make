@@ -20,9 +20,11 @@ pkg=`sudo ./$app.SlackBuild|awk '{print $3}'`
 [ $verbose ] && echo $pkg >&2
 pkg_chk=`expr "$pkg" : '.*SBo.tgz'`
 [ $verbose ] && echo "pkg_chk = $pkg_chk" >&2
-if [ "$pkg_chk" -gt 7 ];then 
+if [ $pkg_chk -gt 7 ];then 
+	echo "sudo mv /tmp/$pkg ."
+	read
 	sudo mv /tmp/$pkg .
-	sudo installpkg /tmp/$pkg
+	sudo installpkg $pkg
 else
 	echo "$cmd: Failed, package not created">&2
 	cd ..
