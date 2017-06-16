@@ -1,17 +1,24 @@
-app=$1
+cmd=`basename $0`
+sbo=$1
 #gpg --verify $sbo.asc|grep -q "Good signature"||{
 #	echo "Integrity check failed" >&2
 #	exit 1
 #}
-tar xvf $app.tar.gz
+app=`basename $sbo .tar.gz
+tar xvf $sbo
 chown fulford $app 
 cd $app 
 . ./$app.info
 wget $DOWNLOAD
 pkg=`./$app.SlackBuild|awk '{print $3}'`
-
-if installpkg /tmp/$pkg;then
+pkg_chk=`expr "$pkg" : '.tgz'
+if [ "$pkf_chk" -eq 4 ];then 
 	mv /tmp/$pkg .
+	installpkg /tmp/$pkg;then
+else
+	echo "$cmd: Failed, package not created">&2
+	cd ..
+	exit 1 
 fi
 cd ..
 	
