@@ -1,5 +1,11 @@
+set -x
 cmd=`basename $0`
-sbo=$1
+while [ $# -gt 0 ];do
+	case $1 in
+		-v) verbose=:;shift;;
+		 *) sbo=$1;shift ;;
+	esac
+done
 #gpg --verify $sbo.asc|grep -q "Good signature"||{
 #	echo "Integrity check failed" >&2
 #	exit 1
@@ -11,7 +17,9 @@ cd $app
 . ./$app.info
 wget $DOWNLOAD
 pkg=`sudo ./$app.SlackBuild|awk '{print $3}'`
+[ $verbose ] && echo $pkg >&2
 pkg_chk=`expr "$pkg" : '.*SBo.tgz'`
+[ $verbose ] && echo "pkg_chk = $pkg_chk" >&2
 if [ "$pkg_chk" -gt 7 ];then 
 	sudo mv /tmp/$pkg .
 	sudo installpkg /tmp/$pkg
